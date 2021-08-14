@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  postger:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: user_ds
+      POSTGRES_PASSWORD: pass_ds
+      POSTGRES_DB: spending_ds
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres/db-volume:/var/lib/postgresql/data
+      - ./postgres:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: pg_isready -U local -d data_cleanse
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  spending:
+    build: .
+    depends_on:
+      postger:
+        condition: service_started
+    ports:
+      - "8081:8080"
+

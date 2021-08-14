@@ -1,0 +1,73 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: denys.smirnov
+      changes:
+        - createTable:
+            tableName: goods
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amount
+                  type: decimal
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: denys.smirnov
+      changes:
+        - insert:
+            tableName: goods
+            columns:
+              - column:
+                  name: name
+                  value: Motor Oil
+              - column:
+                  name: amount
+                  value: 1230
+              - column:
+                  name: type
+                  value: CAR
+              - column:
+                  name: date
+                  value: 2001-09-28 01:00:00
+  - changeSet:
+      id: 3
+      author: denys.smirnov
+      changes:
+        - insert:
+            tableName: goods
+            columns:
+              - column:
+                  name: name
+                  value: Motor Oil
+              - column:
+                  name: amount
+                  value: 1430
+              - column:
+                  name: type
+                  value: CAR
+              - column:
+                  name: date
+                  value: 2001-09-28 01:00:00
