@@ -20,7 +20,7 @@ services:
       retries: 3
 
   spending:
-    build: .
+    build: ../
     depends_on:
       postger:
         condition: service_started
